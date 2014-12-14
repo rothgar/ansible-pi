@@ -13,6 +13,7 @@
             - mosh
             - ssh
             - git
+            - python-pip
 
       - name: install pip packages
         pip: name={{ item }}
