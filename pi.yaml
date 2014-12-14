@@ -1,6 +1,7 @@
 ---
 - hosts: "{{ host }}"
   sudo: True
+  gather_facts: false
   tasks:
       - name: Install apt packages
         apt: name={{ item }} state=installed
