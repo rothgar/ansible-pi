@@ -1,0 +1,21 @@
+---
+- hosts: "{{ host }}"
+  sudo: True
+  tasks:
+      - name: Install apt packages
+        apt: name={{ item }} state=installed
+        with_items:
+            - wakeonlan
+            - python-setuptools
+            - python-dev
+            - tmux
+            - znc
+            - mosh
+            - ssh
+            - git
+
+      - name: install pip packages
+        pip: name={{ item }}
+        with_items:
+            - ouimeaux # wemo web interface
+              
