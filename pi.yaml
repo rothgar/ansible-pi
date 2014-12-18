@@ -15,6 +15,7 @@
             - ssh
             - git
             - python-pip
+            - lsof
 
       - name: install pip packages
         pip: name={{ item }}
@@ -22,7 +23,7 @@
             - ouimeaux # wemo web interface
               
       - name: git repos
-      git: repo={{ item.url }} dest={{ item.dest }} 
-          # defaults recursive=yes update=yes
-      with_items:
+        git: repo={{ item.url }} dest={{ item.dest }} 
+        # defaults recursive=yes update=yes
+        with_items:
           - { url: 'https://github.com/rothgar/dotfiles/', dest: '/home/pi/.dotfiles' }
