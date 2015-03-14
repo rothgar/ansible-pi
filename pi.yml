@@ -6,16 +6,17 @@
       - name: Install apt packages
         apt: name={{ item }} state=installed
         with_items:
-            - wakeonlan
-            - python-setuptools
-            - python-dev
-            - tmux
-            - znc
-            - mosh
-            - ssh
+            - ansible
             - git
-            - python-pip
             - lsof
+            - mosh
+            - python-dev
+            - python-pip
+            - python-setuptools
+            - ssh
+            - tmux
+            - wakeonlan
+            - znc
 
       - name: install pip packages
         pip: name={{ item }}
