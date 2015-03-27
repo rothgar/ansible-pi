@@ -3,6 +3,12 @@ ansible-pi
 
 Ansible playbook for setting up a raspi
 
+Run with
+
+`ansible-playbook -i hosts pi.yml -e host=pi`
+
+Replay `host=pi` with your pi's address. Default value is localhost
+
 Goals
 =====
 
