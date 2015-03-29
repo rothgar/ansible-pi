@@ -6,7 +6,6 @@
       - name: Install apt packages
         apt: name={{ item }} state=latest
         with_items:
-            - ansible
             - git
             - lsof
             - mosh
@@ -23,3 +22,4 @@
         # defaults recursive=yes update=yes
         with_items:
           - { url: 'https://github.com/rothgar/dotfiles/', dest: '/home/pi/.dotfiles' }
+        tags: dotfiles
