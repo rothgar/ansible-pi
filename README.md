@@ -3,28 +3,25 @@ ansible-pi
 
 Ansible playbook for setting up a raspi
 
+### Usage
+
 Run with
 
-`ansible-playbook -i hosts pi.yml -e host=pi`
+`ansible-playbook -i inventory pi.yml`
 
-Replay `host=pi` with your pi's address. Default value is localhost
+If you only want to run on a single machine you can add `-e target=pi`. Default value is all
 
 Goals
 =====
 
- * SSH tunnel
- * IRC bouncer (ZNC)
- * Cron jobs (StackStorm?)
- * WOL server
- * WeMo Web interface
- * DynDNS
+ * Expand rootfs
+ * Set hostname
+ * Secure SSH
+ * Change pi users password (random)
+ * Install docker
+ * Install basic packages
 
-### Usage
+### ToDo
 
-Add your own hosts file or run locally with
-
-`ansible-playbook -i hosts.template -K pi.yml -e host=localhost`
-
-The `-e host=` option needs to specify a host that is in your inventory file.
-If you exclude the host variable the playbook will default to localhost.
-
+- [ ] init docker swarm
+- [ ] run containers
