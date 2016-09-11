@@ -1,0 +1,11 @@
+[pi_swarm]
+pi-1 ansible_host=192.168.1.41
+pi-2 ansible_host=192.168.1.42 swarm_master=true
+pi-3 ansible_host=192.168.1.43 
+pi-4 ansible_host=192.168.1.44 
+
+[pi_swarm:vars]
+ssh_identity_key=/home/user/.ssh/id_rsa.pub
+sshd_config=/etc/ssh/sshd_config
+ansible_user=pi
+ssh_user=pi
