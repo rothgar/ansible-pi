@@ -1,0 +1,10 @@
+---
+# handlers file for pi-docker
+# This may not work. Not sure why
+- name: restart docker full
+  command: /bin/systemctl daemon-reload
+  become: true
+  notify: restart docker
+
+- name: restart docker
+  service: name=docker state=restarted

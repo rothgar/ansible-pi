@@ -1,0 +1,32 @@
+---
+# tasks file for pi-docker
+- name: Add docker repo key
+  apt_key: id=58118E89F3A912897C070ADBF76221572C52609D
+    keyserver=hkp://pgp.mit.edu:80
+
+- name: Add Hypriot key
+  apt_key: url=https://packagecloud.io/Hypriot/Schatzkiste/gpgkey
+    keyring=/etc/apt/trusted.gpg.d/hypriot.gpg 
+    state=present
+
+- name: Add docker repo
+  apt_repository: repo={{ item }}
+    state=present
+  with_items:
+    - "deb [arch=armhf] https://apt.dockerproject.org/repo raspbian-jessie main"
+    - "deb https://packagecloud.io/Hypriot/Schatzkiste/raspbian/ jessie main"
+
+- name: Create docker override folder
+  file: path=/etc/systemd/system/docker.service.d
+    state=directory
+    mode=0644
+    owner=root
+    group=root
+
+- name: Load overlay kernel module
+  modprobe: name=overlay state=present
+
+- name: Enable overlay storage
+  copy: src="files/overlay.conf"
+    dest="/etc/systemd/system/docker.service.d/overlay.conf"
+  notify: restart docker full
