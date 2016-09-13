@@ -33,4 +33,4 @@ Goals
 
 - [ ] init docker swarm
 - [ ] run containers
-- [ ] split into separate roles
+- [x] split into separate roles
