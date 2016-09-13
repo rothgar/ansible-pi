@@ -1,0 +1,8 @@
+---
+- hosts: "{{ target | default('all') }}"
+  become: True
+  gather_facts: false
+  roles:
+    - { role: pi-init, tags: init }
+    - { role: pi-common, tags: common }
+    - { role: pi-docker, tags: docker }
