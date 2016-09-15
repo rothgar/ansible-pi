@@ -22,15 +22,15 @@
 
 - name: Check rootfs size
   shell: "/sbin/parted /dev/mmcblk0 unit '%' print free | grep 'Free Space' | tail -n1 | awk '{print $3}' | awk -F'.' '{print $1}'"
-  register: rootfs
+  register: rootspace
   changed_when: False
   tags:
     - rootfs
 
 - name: Expand rootfs
   command: /usr/bin/raspi-config --expand-rootfs
-  register: disk_expanded
-  when: rootfs.stdout|int > 1
+  when: rootspace.stdout|int > 1
+  register: rootfs
   tags:
     - rootfs
 
@@ -43,7 +43,7 @@
   poll: 0
   ignore_errors: true
   register: rebooting
-  when: hostname|changed or rootfs.stdout|int > 1 or firmware.stdout.find('already up to date') == -1
+  when: hostname|changed or rootfs|changed or firmware.stdout.find('already up to date') == -1
 
 - name: waiting for server to come back
   local_action: wait_for host={{ inventory_hostname }}
